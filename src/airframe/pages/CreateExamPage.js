@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { extractTextFromPDF } from '../../utils/pdfExtract';
 import classNames from 'classnames';
 
 const NUM_OPTIONS = [10, 20, 30, 50];
@@ -34,14 +35,6 @@ const CreateExamPage = () => {
     }
   };
 
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(',')[1]);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-
   const handleGenerate = async () => {
     if (!examName.trim()) { setError('Please enter an exam name.'); return; }
     if (!selectedFile) { setError('Please upload a PDF file.'); return; }
@@ -51,11 +44,12 @@ const CreateExamPage = () => {
     setRemovedIndices(new Set());
     setLoading(true);
     try {
-      const pdfBase64 = await toBase64(selectedFile);
+      const text = await extractTextFromPDF(selectedFile);
+      if (!text) throw new Error('No text could be extracted. The PDF may be image-only (scanned).');
       const response = await fetch('/api/create-exam', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pdfBase64, examName: examName.trim(), numQuestions }),
+        body: JSON.stringify({ text, examName: examName.trim(), numQuestions }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Failed to generate exam.');

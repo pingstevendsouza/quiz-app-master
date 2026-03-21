@@ -1,9 +1,7 @@
-import pdf from 'pdf-parse/lib/pdf-parse.js';
-
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: '50mb',
+      sizeLimit: '10mb',
     },
   },
 };
@@ -49,28 +47,17 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: `Method ${req.method} not allowed` });
   }
 
-  const { pdfBase64, examName, numQuestions = 20 } = req.body;
+  const { text: extractedText, examName, numQuestions = 20 } = req.body;
 
-  if (!pdfBase64 || !examName) {
-    return res.status(400).json({ error: 'pdfBase64 and examName are required.' });
+  if (!extractedText || !examName) {
   }
 
   if (!OPENROUTER_API_KEY) {
     return res.status(500).json({ error: 'OpenRouter API key not configured on server.' });
   }
 
-  let extractedText = '';
-  try {
-    const pdfBuffer = Buffer.from(pdfBase64, 'base64');
-    const pdfData = await pdf(pdfBuffer);
-    extractedText = pdfData.text || '';
-  } catch (err) {
-    console.error('PDF parse error:', err);
-    return res.status(422).json({ error: 'Failed to parse PDF. Make sure the file is a valid PDF.' });
-  }
-
   if (!extractedText.trim()) {
-    return res.status(422).json({ error: 'No text could be extracted from the PDF. The file may be image-only.' });
+    return res.status(422).json({ error: 'No text was extracted from the PDF. The file may be image-only.' });
   }
 
   const trimmedText = extractedText.trim().slice(0, MAX_TEXT_CHARS);
