@@ -11,8 +11,8 @@ export const config = {
 
 // Initialize Upstash Redis client
 const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_URL, // Your Upstash Redis URL
-  token: process.env.UPSTASH_REDIS_TOKEN, // Your Upstash Redis Token
+  url: process.env.KV_REST_API_URL, // Your Upstash Redis URL
+  token: process.env.KV_REST_API_TOKEN, // Your Upstash Redis Token
 });
 
 export default async function handler(req, res) {
