@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
@@ -33,6 +33,14 @@ import Offline from '../Offline';
 const Main = ({ startQuiz }) => {
   const [category, setCategory] = useState(1);
   const [exam, setExam] = useState("CSA");
+  const [dynamicExams, setDynamicExams] = useState(EXAMS);
+
+  useEffect(() => {
+    fetch('/api/list-exams')
+      .then(r => r.json())
+      .then(data => { if (data.exams) setDynamicExams(data.exams); })
+      .catch(() => {});
+  }, []);
   const [numOfQuestions, setNumOfQuestions] = useState(60);
   const [difficulty, setDifficulty] = useState('easy');
   const [questionsType, setQuestionsType] = useState('0');
@@ -185,7 +193,7 @@ const Main = ({ startQuiz }) => {
                   name="exam"
                   placeholder="Select Exam"
                   header="Select Exam"
-                  options={EXAMS}
+                  options={dynamicExams}
                   value={exam}
                   onChange={(e, { value }) =>{ 
                     

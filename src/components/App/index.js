@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Layout from '../Layout';
 import Loader from '../Loader';
 import Upload from '../Upload';
+import CreateExam from '../CreateExam';
 import Main from '../Main';
 import Quiz from '../Quiz';
 import Result from '../Result';
@@ -95,14 +96,17 @@ const App = () => {
   return (
     <Layout onMenuSelect={handleMenuSelect}>
       {loading && <Loader {...loadingMessage} />}
-      {!loading && selectedItem=='Update' && !isQuizStarted && !isQuizCompleted && <Upload /> }
-      {!loading && !isQuizStarted && !isQuizCompleted && selectedItem!='Update'&& (
+      {!loading && selectedItem === 'Update' && !isQuizStarted && !isQuizCompleted && <Upload />}
+      {!loading && selectedItem === 'Create' && !isQuizStarted && !isQuizCompleted && (
+        <CreateExam onBack={() => handleMenuSelect(null)} />
+      )}
+      {!loading && selectedItem !== 'Update' && selectedItem !== 'Create' && !isQuizStarted && !isQuizCompleted && (
         <Main startQuiz={startQuiz} />
       )}
-      {!loading && isQuizStarted && selectedItem!='Update' && (
+      {!loading && isQuizStarted && selectedItem !== 'Update' && selectedItem !== 'Create' && (
         <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} />
       )}
-      {!loading && isQuizCompleted && selectedItem!='Update' && (
+      {!loading && isQuizCompleted && selectedItem !== 'Update' && selectedItem !== 'Create' && (
         <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />
       )}
     </Layout>
