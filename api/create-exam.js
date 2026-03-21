@@ -50,6 +50,7 @@ export default async function handler(req, res) {
   const { text: extractedText, examName, numQuestions = 20 } = req.body;
 
   if (!extractedText || !examName) {
+    return res.status(400).json({ error: 'text and examName are required.' });
   }
 
   if (!OPENROUTER_API_KEY) {
