@@ -14,6 +14,7 @@ const STATIC_EXAMS = [
   { key: 'IRM.json', text: 'CIS - IRM', value: 'IRM' },
   { key: 'VRM.json', text: 'CIS - VRM', value: 'VRM' },
   { key: 'VR.json', text: 'CIS - VR', value: 'VR' },
+  { key: 'DF.json', text: 'CIS - DF', value: 'DF' },
 ];
 
 export default async function handler(req, res) {
