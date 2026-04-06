@@ -29,6 +29,11 @@ const CATEGORIES = [
     text: 'CIS - VR',
     value: "VR",
   }
+  ,{
+    key: "DF.json",
+    text: 'CIS - DF',
+    value: "DF",
+  }
   
   // },
   // {
