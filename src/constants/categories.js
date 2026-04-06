@@ -23,6 +23,11 @@ const CATEGORIES = [
     key: 5,
     text: 'ServiceNow CIS - VRM',
     value: 5,
+  },
+  {
+    key: 6,
+    text: 'ServiceNow CIS - DF',
+    value: 6,
   }
   
   // },
