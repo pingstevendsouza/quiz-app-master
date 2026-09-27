@@ -1,0 +1,156 @@
+.header {
+  margin-bottom: var(--space-24);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.card {
+  margin-bottom: var(--space-16);
+}
+
+.errorBox {
+  background: var(--color-danger-light);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: var(--radius-md);
+  padding: var(--space-12) var(--space-16);
+  font-size: 13px;
+  margin-bottom: var(--space-16);
+}
+
+.loadingState {
+  padding: var(--space-32) var(--space-24);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  padding: var(--space-16) var(--space-24);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.avatarFallback {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.userBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.userEmail {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.youBadge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 1px var(--space-8);
+}
+
+.roleBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.roleAdmin {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.roleManager {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.roleUser {
+  background: var(--color-background);
+  color: var(--color-text-secondary);
+}
+
+.roleControl {
+  flex-shrink: 0;
+  width: 160px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .row {
+    padding: var(--space-12) var(--space-16);
+    flex-wrap: wrap;
+  }
+
+  .userBody {
+    min-width: 140px;
+  }
+
+  .roleControl {
+    width: 140px;
+  }
+}

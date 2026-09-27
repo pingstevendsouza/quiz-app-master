@@ -1,4 +1,4 @@
-import { requireAdmin } from './_lib/session';
+import { requireManager } from './_lib/session';
 
 export const config = {
   api: {
@@ -130,8 +130,8 @@ async function handler(req, res) {
   });
 }
 
-// Admin-only: generation burns the (shared, server-side) OpenRouter API
-// budget and only the admin-gated Create Exam page in the frontend calls
-// this — gating it here too stops an unauthenticated caller from hitting
-// it directly.
-export default requireAdmin(handler);
+// Manager(+admin)-only: generation burns the (shared, server-side)
+// OpenRouter API budget and only the manager-gated Create Exam page in the
+// frontend calls this — gating it here too stops an unauthenticated caller
+// from hitting it directly.
+export default requireManager(handler);

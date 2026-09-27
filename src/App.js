@@ -11,6 +11,8 @@ import CreateExam from './pages/CreateExam';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Progress from './pages/Progress';
+import ProgressDetail from './pages/ProgressDetail';
+import Users from './pages/Users';
 
 // Each guard renders nothing while the initial /api/auth/session check is
 // in flight — avoids flashing a redirect for a user whose session cookie
@@ -22,11 +24,24 @@ const RequireAuth = ({ children }) => {
   return children;
 };
 
+// Strict admin-only guard — a manager hitting one of these routes directly
+// is redirected away, same as a non-admin was before role became a
+// three-value enum.
 const RequireAdmin = ({ children }) => {
   const { user, authLoading } = useAuth();
   if (authLoading) return null;
   if (!user) return <Navigate to="/login" replace />;
   if (user.role !== 'admin') return <Navigate to="/" replace />;
+  return children;
+};
+
+// Manager OR admin — used for the exam-management routes, which are no
+// longer strictly admin-only now that 'manager' exists.
+const RequireManager = ({ children }) => {
+  const { user, authLoading } = useAuth();
+  if (authLoading) return null;
+  if (!user) return <Navigate to="/login" replace />;
+  if (user.role !== 'manager' && user.role !== 'admin') return <Navigate to="/" replace />;
   return children;
 };
 
@@ -124,21 +139,41 @@ const App = () => (
           }
         />
         <Route
+          path="/progress/:resultId"
+          element={
+            <RequireAuth>
+              <AppLayout>
+                <ProgressDetail />
+              </AppLayout>
+            </RequireAuth>
+          }
+        />
+        <Route
           path="/manage-exams"
           element={
-            <RequireAdmin>
+            <RequireManager>
               <AppLayout>
                 <ManageExams />
               </AppLayout>
-            </RequireAdmin>
+            </RequireManager>
           }
         />
         <Route
           path="/create-exam"
           element={
-            <RequireAdmin>
+            <RequireManager>
               <AppLayout>
                 <CreateExam />
+              </AppLayout>
+            </RequireManager>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <RequireAdmin>
+              <AppLayout>
+                <Users />
               </AppLayout>
             </RequireAdmin>
           }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './Sidebar.module.css';
-import { IconBookOpen, IconFilePlus, IconSettings, IconX, IconTrendingUp, IconLogOut } from '../../icons';
+import { IconBookOpen, IconFilePlus, IconSettings, IconX, IconTrendingUp, IconLogOut, IconUser } from '../../icons';
 import { useAuth } from '../../context/AuthContext';
 
 // isOpen/onClose only matter below the 768px breakpoint, where Sidebar.module.css
@@ -53,7 +53,7 @@ const Sidebar = ({ isOpen = false, onClose }) => {
           <IconTrendingUp size={18} />
           <span>My Progress</span>
         </NavLink>
-        {user?.role === 'admin' && (
+        {(user?.role === 'manager' || user?.role === 'admin') && (
           <>
             <NavLink to="/create-exam" className={navLinkClassName} onClick={handleNavClick}>
               <IconFilePlus size={18} />
@@ -65,10 +65,23 @@ const Sidebar = ({ isOpen = false, onClose }) => {
             </NavLink>
           </>
         )}
+        {user?.role === 'admin' && (
+          <NavLink to="/users" className={navLinkClassName} onClick={handleNavClick}>
+            <IconUser size={18} />
+            <span>Users</span>
+          </NavLink>
+        )}
       </nav>
 
       {user && (
         <div className={styles.userRow}>
+          {user.picture ? (
+            <img src={user.picture} alt="" className={styles.avatar} referrerPolicy="no-referrer" />
+          ) : (
+            <div className={styles.avatarFallback} aria-hidden="true">
+              {(user.name || '?').trim().charAt(0).toUpperCase()}
+            </div>
+          )}
           <div className={styles.userInfo}>
             <div className={styles.userName}>{user.name}</div>
             <div className={styles.userEmail}>{user.email}</div>

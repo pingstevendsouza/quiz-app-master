@@ -53,6 +53,7 @@ export async function signup(req, res) {
 
     const passwordHash = await bcrypt.hash(String(password), SALT_ROUNDS);
     const userId = crypto.randomUUID();
+    const createdAt = Date.now();
     const user = {
       id: userId,
       email: normalizedEmail,
@@ -61,11 +62,14 @@ export async function signup(req, res) {
       role: 'user',
       googleSub: null,
       linkedinSub: null,
-      createdAt: Date.now(),
+      googlePicture: null,
+      linkedinPicture: null,
+      createdAt,
     };
 
     await redis.set(`user:${userId}`, JSON.stringify(user));
     await redis.set(`user:byEmail:${normalizedEmail}`, userId);
+    await redis.zadd('users-index', { score: createdAt, member: userId });
 
     await createSession(res, userId, user.role);
     return res.status(200).json(publicUser(user));
@@ -228,12 +232,13 @@ export async function googleCallback(req, res) {
       audience: process.env.GOOGLE_CLIENT_ID,
     });
     const payload = ticket.getPayload();
-    const { sub, email, name } = payload;
+    const { sub, email, name, picture } = payload;
 
     const user = await findOrCreateOAuthUser({
       sub,
       email,
       name,
+      picture,
       subKind: 'googleSub',
       subIndexPrefix: 'user:byGoogleSub:',
     });
@@ -329,12 +334,13 @@ export async function linkedinCallback(req, res) {
       issuer: LINKEDIN_ISSUER,
       audience: process.env.LINKEDIN_CLIENT_ID,
     });
-    const { sub, email, name } = payload;
+    const { sub, email, name, picture } = payload;
 
     const user = await findOrCreateOAuthUser({
       sub,
       email,
       name,
+      picture,
       subKind: 'linkedinSub',
       subIndexPrefix: 'user:byLinkedinSub:',
     });

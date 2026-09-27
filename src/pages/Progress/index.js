@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './index.module.css';
 import Card from '../../components/Card/Card';
@@ -9,6 +10,7 @@ import { timeConverter } from '../../utils';
 // audit-trail endpoint (api/results.js). Each attempt is also written with
 // a 15-day Redis TTL, hence the note in the empty/footer state below.
 const Progress = () => {
+  const navigate = useNavigate();
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
 
@@ -71,7 +73,19 @@ const Progress = () => {
         <Card className={styles.card}>
           <div className={styles.list}>
             {results.map((r) => (
-              <div className={styles.row} key={r.resultId}>
+              <div
+                className={classNames(styles.row, styles.rowClickable)}
+                key={r.resultId}
+                role="button"
+                tabIndex={0}
+                onClick={() => navigate(`/progress/${r.resultId}`)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    navigate(`/progress/${r.resultId}`);
+                  }
+                }}
+              >
                 <span
                   className={classNames(styles.badge, r.passed ? styles.badgePass : styles.badgeFail)}
                 >

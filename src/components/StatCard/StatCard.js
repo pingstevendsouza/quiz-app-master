@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import styles from './StatCard.module.css';
 
 // Simplest approach per spec: accept bg/fg directly, falling back to a
@@ -13,12 +14,16 @@ const hexToRgba = (hex, alpha) => {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
-const StatCard = ({ label, value, icon: Icon, accentColor, bg, fg }) => {
+// onClick is optional — passing it (Results/ProgressDetail's Correct/
+// Incorrect drill-down) turns the card into a keyboard-accessible button
+// without changing anything for the other (non-clickable) call sites.
+const StatCard = ({ label, value, icon: Icon, accentColor, bg, fg, onClick, active }) => {
   const iconFg = fg || accentColor || 'var(--color-primary)';
   const iconBg = bg || (accentColor ? hexToRgba(accentColor, 0.12) : 'var(--color-primary-light)');
+  const clickable = typeof onClick === 'function';
 
-  return (
-    <div className={styles.statCard}>
+  const content = (
+    <>
       <div className={styles.icon} style={{ background: iconBg, color: iconFg }}>
         {Icon && <Icon size={22} color={iconFg} />}
       </div>
@@ -26,8 +31,22 @@ const StatCard = ({ label, value, icon: Icon, accentColor, bg, fg }) => {
         <div className={styles.label}>{label}</div>
         <div className={styles.value}>{value}</div>
       </div>
-    </div>
+    </>
   );
+
+  if (clickable) {
+    return (
+      <button
+        type="button"
+        className={classNames(styles.statCard, styles.statCardClickable, { [styles.statCardActive]: active })}
+        onClick={onClick}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return <div className={styles.statCard}>{content}</div>;
 };
 
 StatCard.propTypes = {
@@ -37,6 +56,8 @@ StatCard.propTypes = {
   accentColor: PropTypes.string,
   bg: PropTypes.string,
   fg: PropTypes.string,
+  onClick: PropTypes.func,
+  active: PropTypes.bool,
 };
 
 export default StatCard;

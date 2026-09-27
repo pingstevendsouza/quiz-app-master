@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import { parse, serialize } from 'cookie';
 import { redis } from './redis';
+import { getUserById } from './users';
 
 export const SESSION_COOKIE = 'qp_session';
 const SESSION_TTL_SECONDS = 2592000; // 30 days
@@ -110,10 +111,31 @@ export const requireAuth = (handler) => async (req, res) => {
   return handler(req, res);
 };
 
+// Role is looked up fresh from the user record rather than trusted from the
+// (potentially days-old) session cookie's cached role — otherwise an admin
+// promoting/demoting someone wouldn't take effect until that user's next
+// login, which would look like the promotion silently failed.
+const currentRole = async (req) => {
+  const user = await getUserById(req.session.userId);
+  return user ? user.role : req.session.role;
+};
+
 export const requireAdmin = (handler) =>
   requireAuth(async (req, res) => {
-    if (req.session.role !== 'admin') {
+    const role = await currentRole(req);
+    if (role !== 'admin') {
       return res.status(403).json({ error: 'Admin access required' });
     }
+    req.session.role = role;
+    return handler(req, res);
+  });
+
+export const requireManager = (handler) =>
+  requireAuth(async (req, res) => {
+    const role = await currentRole(req);
+    if (role !== 'manager' && role !== 'admin') {
+      return res.status(403).json({ error: 'Manager access required' });
+    }
+    req.session.role = role;
     return handler(req, res);
   });

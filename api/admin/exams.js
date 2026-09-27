@@ -1,5 +1,5 @@
 import { redis } from '../_lib/redis';
-import { requireAdmin } from '../_lib/session';
+import { requireManager } from '../_lib/session';
 
 const EXAM_CODE_RE = /^[A-Z0-9_]{1,32}$/;
 const REGISTRY_KEY = 'exams-list';
@@ -11,13 +11,13 @@ const readRegistry = async () => {
 
 const sanitizeExamCode = (value) => String(value || '').trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '_');
 
-// Admin-only endpoint that replaces the vulnerable, filename-driven
+// Manager(+admin)-only endpoint that replaces the vulnerable, filename-driven
 // api/upload-json.js for both directions of exam-content management:
 //   GET  ?examCode=CODE  -> fetch the raw questions (Manage Exams "download")
 //   POST {examCode, examText, questions} -> write + register (Manage Exams
 //        "upload" and Create Exam "save", both funnel through here now)
-// Both require an admin session; regular quiz-taking reads go through the
-// separate, any-authenticated-user api/exams.js instead.
+// Both require a manager or admin session; regular quiz-taking reads go
+// through the separate, any-authenticated-user api/exams.js instead.
 async function handler(req, res) {
   if (req.method === 'GET') {
     const examCode = sanitizeExamCode(req.query.examCode);
@@ -78,4 +78,4 @@ async function handler(req, res) {
   return res.status(405).json({ error: `Method ${req.method} not allowed` });
 }
 
-export default requireAdmin(handler);
+export default requireManager(handler);
