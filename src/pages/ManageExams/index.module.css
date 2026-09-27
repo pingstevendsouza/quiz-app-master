@@ -1,0 +1,146 @@
+.header {
+  margin-bottom: var(--space-24);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.card {
+  margin-bottom: var(--space-24);
+}
+
+.cardHeader {
+  padding: var(--space-24) var(--space-24) 0;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.cardSubtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-4);
+}
+
+.cardBody {
+  padding: var(--space-24);
+}
+
+.row {
+  display: flex;
+  gap: var(--space-12);
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.formGroup {
+  flex: 1;
+  min-width: 200px;
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.dropZone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-48) var(--space-24);
+  text-align: center;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+  margin-bottom: var(--space-16);
+}
+
+.dropZoneActive {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.dropZoneTitle {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.fileChip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  margin-bottom: var(--space-16);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .formGroup {
+    min-width: 0;
+  }
+
+  .cardHeader,
+  .cardBody {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+  }
+
+  .dropZone {
+    padding: var(--space-32) var(--space-16);
+  }
+
+  .fileChip {
+    flex-wrap: wrap;
+  }
+}
+
+.message {
+  border-radius: var(--radius-md);
+  padding: var(--space-12) var(--space-16);
+  font-size: 13px;
+  margin-bottom: var(--space-16);
+}
+
+.messageSuccess {
+  background: var(--color-success-light);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.messageError {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+}
+
+.messageInfo {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}

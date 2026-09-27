@@ -1,0 +1,192 @@
+.welcomeCard {
+  position: relative;
+  padding: var(--space-24) var(--space-24) var(--space-24) 28px;
+  margin-bottom: var(--space-24);
+  overflow: hidden;
+}
+
+.welcomeCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-primary);
+}
+
+.welcomeHeading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.welcomeText {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-24);
+}
+
+.configHeading {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.configSubtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-4);
+}
+
+.cardHeader {
+  padding: var(--space-24) var(--space-24) 0;
+}
+
+.cardBody {
+  padding: var(--space-24);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-24);
+  margin-top: var(--space-16);
+}
+
+.formGroup {
+  margin-bottom: var(--space-16);
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.inlineField {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.numberInput {
+  width: 72px;
+  flex-shrink: 0;
+  padding: 8px var(--space-8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.numberInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  align-self: center;
+}
+
+.toggleRow > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+}
+
+.inputRow > .inlineField {
+  flex: 1;
+  min-width: 0;
+}
+
+.fieldError {
+  font-size: 12px;
+  color: var(--color-danger);
+  margin-top: var(--space-8);
+}
+
+
+.footer {
+  padding: var(--space-16) var(--space-24);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+}
+
+.footerHint {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.errorBox {
+  background: var(--color-danger-light);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: var(--radius-md);
+  padding: var(--space-12) var(--space-16);
+  font-size: 13px;
+  margin: var(--space-16) var(--space-24) 0;
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  .inputRow,
+  .toggleRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-16);
+  }
+
+  .cardHeader,
+  .cardBody,
+  .footer {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer button {
+    width: 100%;
+  }
+
+  .errorBox {
+    margin-left: var(--space-16);
+    margin-right: var(--space-16);
+  }
+
+  .welcomeCard {
+    padding: var(--space-16) var(--space-16) var(--space-16) 24px;
+  }
+}

@@ -1,0 +1,196 @@
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: var(--space-48) var(--space-16);
+}
+
+.heroCard {
+  padding: var(--space-32) var(--space-24);
+  text-align: center;
+  margin-bottom: var(--space-24);
+}
+
+.scoreCircle {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-full);
+  border: 6px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-16);
+}
+
+.scoreCirclePass {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.scoreCircleFail {
+  border-color: var(--color-danger);
+  background: var(--color-danger-light);
+}
+
+.scoreValue {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.scoreLabel {
+  margin-top: var(--space-8);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.headline {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.subtext {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-24);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-24);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-24);
+}
+
+.tab {
+  padding: var(--space-12) var(--space-4);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+
+.tabActive {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-16);
+}
+
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.reviewRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  padding: var(--space-16);
+}
+
+.reviewIcon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviewIconCorrect {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.reviewIconWrong {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
+.reviewBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.reviewQuestion {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.reviewAnswerRow {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.reviewAnswerLabel {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-right: var(--space-4);
+}
+
+.correctText {
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.wrongText {
+  color: var(--color-danger);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-24);
+  }
+
+  .heroCard {
+    padding: var(--space-24) var(--space-16);
+  }
+
+  .scoreCircle {
+    width: 112px;
+    height: 112px;
+  }
+
+  .scoreValue {
+    font-size: 26px;
+  }
+
+  .headline {
+    font-size: 18px;
+  }
+
+  .tabs {
+    gap: var(--space-16);
+  }
+
+  .actions {
+    gap: var(--space-8);
+  }
+}

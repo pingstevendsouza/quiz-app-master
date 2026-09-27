@@ -1,0 +1,35 @@
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.panel {
+  position: absolute;
+  bottom: calc(100% + var(--space-8));
+  right: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(45, 44, 40, 0.08);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 160px;
+  z-index: 20;
+}
+
+.panelLink {
+  display: block;
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.panelLink:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}

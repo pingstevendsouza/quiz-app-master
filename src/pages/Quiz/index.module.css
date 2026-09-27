@@ -1,0 +1,301 @@
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--space-24) var(--space-16) var(--space-48);
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-16);
+}
+
+.topBarSide {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.topBarSide.right {
+  justify-content: flex-end;
+}
+
+.questionCounter {
+  flex: 2;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.timerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+  border: 1px solid #E8C99A;
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.timerBadgeUrgent {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+  border-color: #E3B0A8;
+}
+
+.progressTrack {
+  height: 8px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-24);
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.2s ease;
+}
+
+.questionCard {
+  margin-bottom: var(--space-24);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  padding: var(--space-16) var(--space-24);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.badgeGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.showAnswerButton {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.qBadge {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.typeBadge {
+  background: var(--color-background);
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+.cardBody {
+  padding: var(--space-24);
+}
+
+.questionText {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin-bottom: var(--space-24);
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.optionRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-12) var(--space-16);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+  background: var(--color-surface);
+}
+
+.optionRow:hover {
+  border-color: var(--color-primary);
+}
+
+.optionRowSelected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.optionRowCorrect {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.correctIcon {
+  color: var(--color-success);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.letterBadge {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--color-background);
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letterBadgeSelected {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.letterBadgeCorrect {
+  background: var(--color-success);
+  color: #FFFFFF;
+}
+
+.optionText {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.footerNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-24);
+}
+
+.nextWrap {
+  display: flex;
+  align-items: center;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-right: var(--space-12);
+}
+
+.navigatorTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding: var(--space-16) var(--space-24) 0;
+}
+
+.navGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  padding: var(--space-16) var(--space-24) var(--space-24);
+}
+
+.navButton {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.navButtonAnswered {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.navButtonCurrent {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .topBar {
+    flex-wrap: wrap;
+    row-gap: var(--space-8);
+  }
+
+  .questionCounter {
+    font-size: 13px;
+  }
+
+  .timerBadge {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .cardHeader,
+  .cardBody {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+  }
+
+  .cardHeader {
+    flex-wrap: wrap;
+    row-gap: var(--space-8);
+  }
+
+  .questionText {
+    font-size: 16px;
+  }
+
+  .footerNav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-12);
+  }
+
+  .hint {
+    display: none;
+  }
+
+  .nextWrap {
+    width: 100%;
+  }
+
+  .nextWrap button {
+    width: 100%;
+  }
+
+  .navigatorTitle {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+  }
+
+  .navGrid {
+    padding: var(--space-16);
+  }
+}

@@ -1,7 +1,7 @@
 {
-  "short_name": "ServiceNow QuizApp",
-  "name": "ServiceNow QuizApp",
-  "description": "ServiceNow QuizApp",
+  "short_name": "Quiz Prep",
+  "name": "Quiz Prep",
+  "description": "Quiz Prep - Practice exams for ServiceNow certifications",
   "icons": [
     {
       "src": "android-chrome-192x192.png",
@@ -17,6 +17,6 @@
   "start_url": ".",
   "display": "standalone",
   "orientation": "any",
-  "theme_color": "#1B1C1D",
-  "background_color": "#D0D9DD"
+  "theme_color": "#C96442",
+  "background_color": "#F7F5EF"
 }

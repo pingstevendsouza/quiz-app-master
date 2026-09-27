@@ -1,3 +1,5 @@
+import { requireAdmin } from './_lib/session';
+
 export const config = {
   api: {
     bodyParser: {
@@ -41,7 +43,7 @@ ${text}
 Output the JSON array now:`;
 }
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST']);
     return res.status(405).json({ error: `Method ${req.method} not allowed` });
@@ -127,3 +129,9 @@ export default async function handler(req, res) {
     usedChars: trimmedText.length,
   });
 }
+
+// Admin-only: generation burns the (shared, server-side) OpenRouter API
+// budget and only the admin-gated Create Exam page in the frontend calls
+// this — gating it here too stops an unauthenticated caller from hitting
+// it directly.
+export default requireAdmin(handler);

@@ -1,0 +1,250 @@
+.header {
+  margin-bottom: var(--space-24);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.card {
+  margin-bottom: var(--space-24);
+}
+
+.cardHeader {
+  padding: var(--space-24) var(--space-24) 0;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.cardSubtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-4);
+}
+
+.cardBody {
+  padding: var(--space-24);
+}
+
+.cardFooter {
+  padding: var(--space-16) var(--space-24);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-24);
+}
+
+.formGroup {
+  margin-bottom: var(--space-16);
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: var(--space-4);
+}
+
+.input {
+  width: 100%;
+  padding: 10px var(--space-12);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.dropZone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32) var(--space-24);
+  text-align: center;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.dropZoneActive {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.fileChip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  margin-top: var(--space-12);
+}
+
+.message {
+  border-radius: var(--radius-md);
+  padding: var(--space-12) var(--space-16);
+  font-size: 13px;
+  margin-bottom: var(--space-16);
+}
+
+.messageSuccess {
+  background: var(--color-success-light);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.messageError {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+}
+
+.messageInfo {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-24);
+}
+
+.questionRow {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.questionRow:last-child {
+  border-bottom: none;
+}
+
+.questionRowHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-12) var(--space-24);
+  cursor: pointer;
+}
+
+.questionRowRemoved {
+  opacity: 0.45;
+}
+
+.questionIndex {
+  min-width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.questionIndexRemoved {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
+.questionText {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.difficultyBadge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.questionDetail {
+  padding: 0 var(--space-24) var(--space-16) 64px;
+}
+
+.answerRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: 13px;
+  padding: var(--space-4) 0;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  .cardHeader,
+  .cardBody,
+  .cardFooter {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+  }
+
+  .questionRowHeader {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+    flex-wrap: wrap;
+  }
+
+  .questionText {
+    min-width: 160px;
+  }
+
+  .questionDetail {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+  }
+
+  .fileChip {
+    flex-wrap: wrap;
+  }
+}

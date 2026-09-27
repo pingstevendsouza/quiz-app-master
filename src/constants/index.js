@@ -1,9 +1,2 @@
-export { default as CATEGORIES } from './categories';
 export { default as EXAMS } from './exams';
-export { default as COUNTDOWN_TIME } from './countdownTime';
-export { default as DIFFICULTY } from './difficulty';
-export { default as NUM_OF_QUESTIONS } from './numOfQuestions';
-export { default as QUESTIONS_TYPE } from './questionsType';
-export { default as CAD_EXAM } from './CAD';
-export { default as CSA_EXAM } from './CSA';
-export { default as SHUFFLE } from './doShuffle';
+export { default as COUNTDOWN_DURATION } from './countdownDuration';
