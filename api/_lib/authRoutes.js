@@ -184,12 +184,21 @@ export async function googleCallback(req, res) {
 
   const { code, state } = req.query;
 
-  res.setHeader('Set-Cookie', clearOAuthStateCookie());
-
+  // The state-clear cookie is only set on these early-exit paths, where it's
+  // the sole Set-Cookie header on the response — confirmed working. On
+  // success, createSession() below is the ONLY Set-Cookie call; letting the
+  // oauth-state cookie simply expire via its own 10-minute Max-Age (rather
+  // than also clearing it here) avoids ever merging two Set-Cookie values
+  // into one array-valued header, which is what was actually breaking the
+  // signed-in session on Vercel — the callback's own redirect always worked,
+  // but the array-valued header wasn't reliably reaching the browser as two
+  // separate cookies, so the session cookie silently never arrived.
   if (!verifyOAuthState(req, state)) {
+    res.setHeader('Set-Cookie', clearOAuthStateCookie());
     return res.status(400).json({ error: 'Invalid or missing OAuth state.' });
   }
   if (!code) {
+    res.setHeader('Set-Cookie', clearOAuthStateCookie());
     return res.status(400).json({ error: 'Missing authorization code.' });
   }
 
@@ -282,12 +291,16 @@ export async function linkedinCallback(req, res) {
 
   const { code, state } = req.query;
 
-  res.setHeader('Set-Cookie', clearOAuthStateCookie());
-
+  // See the identical comment in googleCallback above — only setting the
+  // state-clear cookie on these early-exit paths (never alongside
+  // createSession's own Set-Cookie) avoids ever merging two Set-Cookie
+  // values into one array-valued header.
   if (!verifyOAuthState(req, state)) {
+    res.setHeader('Set-Cookie', clearOAuthStateCookie());
     return res.status(400).json({ error: 'Invalid or missing OAuth state.' });
   }
   if (!code) {
+    res.setHeader('Set-Cookie', clearOAuthStateCookie());
     return res.status(400).json({ error: 'Missing authorization code.' });
   }
 
