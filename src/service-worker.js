@@ -24,6 +24,15 @@ registerRoute(({ request, url }) => {
     return false;
   }
 
+  // /api/* navigations are server-side redirects (OAuth sign-in/callback),
+  // not client-side SPA routes — without this, the service worker was
+  // intercepting the click and serving the cached app shell instead of
+  // ever letting the browser reach Google/LinkedIn or our own callback,
+  // which is what broke OAuth sign-in entirely.
+  if (url.pathname.startsWith('/api/')) {
+    return false;
+  }
+
   return true;
 }, createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html'));
 
